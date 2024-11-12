@@ -1,6 +1,6 @@
 from cell import Cell
 from stone import Stone
-
+import copy
 class Board:
     def __init__(self, size: int ,step: int):
         self.step = step
@@ -21,12 +21,14 @@ class Board:
             raise IndexError("Stone position out of board bounds")
 
     def move_stone(self, x1: int, y1: int, x2: int, y2: int):
-        if self.step ==0 :
-            print ("you cant move the stone...")
-            return
-        if 0 <= x1 < self.size and 0 <= y1 < self.size and 0 <= x2 < self.size and 0 <= y2 < self.size:
-            start_cell = self.grid[x1][y1]
-            end_cell = self.grid[x2][y2]
+        board_copy = copy.deepcopy(self)
+        
+        if board_copy.step == 0:
+            raise IndexError("You can't move the stone...")
+           
+        if 0 <= x1 < board_copy.size and 0 <= y1 < board_copy.size and 0 <= x2 < board_copy.size and 0 <= y2 < board_copy.size:
+            start_cell = board_copy.grid[x1][y1]
+            end_cell = board_copy.grid[x2][y2]
 
             if start_cell.stone and end_cell.is_empty:
                 stone_type = start_cell.stone.stone_type
@@ -35,24 +37,19 @@ class Board:
                 start_cell.remove_stone()
                 
                 if stone_type == '+':
-                    self._apply_repulsion(x2, y2)
+                    board_copy._apply_repulsion(x2, y2)
                 elif stone_type == '-':
-                    self._apply_attraction(x2, y2)
+                    board_copy._apply_attraction(x2, y2)
             else:
-                raise ValueError("Cannot move stone: destination is not empty or no stone to move")
+                raise IndexError("Cannot move stone: destination is not empty or no stone to move")
+                
         else:
             raise IndexError("Stone position out of board bounds")
         
-        self.step-=1
-        print("\nMoving stone...\n")
-        
-        if self.check_win():
-            print("you win ...")
-            return
-        if self.step ==0 :
-            print ("you loser...")
-            return
-        return self
+        if board_copy.step == 0:
+            raise IndexError("No more moves left.")
+        board_copy.step -= 1
+        return board_copy
         
     def check_win(self) -> bool:
         """Check if all goal cells are not empty."""
@@ -207,26 +204,31 @@ class Board:
 
             start -= 1
 
-    def find_x(board):
-        for i in range(board.size):
-            for j in range(board.size):
-                cell = board.grid[i][j]
+    def find_x(self,magnet):
+        for i in range(self.size):
+            for j in range(self.size):
+                cell = self.grid[i][j]
                 stone = cell.stone
-                if stone is not None and stone.stone_type == '+':
+                if stone is not None and stone.stone_type == magnet:
                     return i
+        return None
                 
                 
                 
-    def find_y(board):
-        for i in range(board.size):
-            for j in range(board.size):
-                cell = board.grid[i][j]
+    def find_y(self,magnet):
+        for i in range(self.size):
+            for j in range(self.size):
+                cell = self.grid[i][j]
                 stone = cell.stone
-                if stone is not None and stone.stone_type == '+':
-                    return j       
+                if stone is not None and stone.stone_type ==magnet:
+                    return j    
+        return None  
+
 
     def display(self):
         print("the steps =",self.step,"\n")
         for row in self.grid:
             print(" | ".join(str(cell) for cell in row))
             print("-" * (self.size * 15 - 1))
+
+            

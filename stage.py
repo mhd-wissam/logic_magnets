@@ -1,7 +1,8 @@
 from board import Board
 from cell import Cell
 from stone import Stone
-
+import random
+import string
 class Stage:
 
     positive_stone = Stone('+')
@@ -9,7 +10,7 @@ class Stage:
     iron_stone = Stone('f')
     stage_array=[]
 
-    board1 = Board(size=4, step=5)
+    board1 = Board(size=4, step=3)
 
     stage_array.append(board1)
     # Place block and goal cells
@@ -26,7 +27,7 @@ class Stage:
     board1.place_stone(1, 2, iron_stone)
 #........................................................................
 
-    board2 = Board(5,5)
+    board2 = Board(5,1)
     stage_array.append(board2)
     # Plae block and goal cells
     board2.place_cell(0, 2, 'goal')
@@ -44,7 +45,7 @@ class Stage:
 
 #.................................................................
 
-    board3 = Board(4,5)
+    board3 = Board(4,2)
     stage_array.append(board3)
     # Plae block and goal cells
     board3.place_cell(0, 0, 'block')
@@ -64,7 +65,7 @@ class Stage:
 
 #.................................................................
 
-    board4 = Board(5,5)
+    board4 = Board(5,2)
     stage_array.append(board4)
     # Plae block and goal cells
     board4.place_cell(0, 0, 'block')
@@ -272,7 +273,7 @@ class Stage:
     board12.place_cell(3, 4, 'block')
     board12.place_cell(4, 4, 'block')
 
-    board12.place_cell(0, 0, 'goal')
+    board12.place_cell(1, 0, 'goal')
     board12.place_cell(2, 0, 'goal')
     board12.place_cell(4, 0, 'goal')
     board12.place_cell(4, 2, 'goal')
@@ -375,7 +376,7 @@ class Stage:
     board16.place_cell(0, 3, 'goal')
     board16.place_cell(0, 4, 'goal')
     board16.place_cell(4, 0, 'goal')
-    board16.place_cell(4, 4, 'goal')
+    board16.place_cell(4, 3, 'goal')
      # Place stones
     board16.place_stone(2, 0, negative_stone)
     board16.place_stone(2, 4, positive_stone)
@@ -436,7 +437,7 @@ class Stage:
 #...................................................................
 #...................................................................
 
-    board19 = Board(5, 2)
+    board19 = Board(5, 4)
     stage_array.append(board19)
 
    # Place goal cells
@@ -510,12 +511,70 @@ class Stage:
     board21.place_stone(1,2, iron_stone)
     
 #...................................................................
+    board22 = Board(5,3)
+    stage_array.append(board22)
+    board22.place_cell(0, 2, 'block')
+    board22.place_cell(1, 2, 'block')
+    board22.place_cell(3, 4, 'block')
+    board22.place_cell(4, 0, 'block')
+    board22.place_cell(4, 1, 'block')
+    board22.place_cell(4, 2, 'block')
+    board22.place_cell(4, 3, 'block')
+    board22.place_cell(4, 4, 'block')
+
+    board22.place_cell(0, 1, 'goal')
+    board22.place_cell(0, 3, 'goal')
+    board22.place_cell(1, 0, 'goal')
+    board22.place_cell(1, 4, 'goal')
+    board22.place_cell(2 ,1, 'goal')
+
+    board22.place_stone(0, 0, positive_stone)
+    board22.place_stone(3, 2, negative_stone)
+    board22.place_stone(0, 3, iron_stone)
+    board22.place_stone(0, 4, iron_stone)
+    board22.place_stone(3, 0, iron_stone)
+
 #...................................................................
- 
-    
+    board23 = Board(5,3)
+    stage_array.append(board23)
+    board23.place_cell(4, 0, 'block')
+    board23.place_cell(4, 1, 'block')
+    board23.place_cell(4, 2, 'block')
+    board23.place_cell(4, 3, 'block')
+    board23.place_cell(4, 4, 'block')
+
+    board23.place_cell(0, 2, 'goal')
+    board23.place_cell(2, 1, 'goal')
+    board23.place_cell(2, 2, 'goal')
+    board23.place_cell(2, 3, 'goal')
+    board23.place_cell(3 ,2, 'goal')
+
+    board23.place_stone(3, 4, positive_stone)
+    board23.place_stone(3, 2, negative_stone)
+    board23.place_stone(0, 3, iron_stone)
+    board23.place_stone(1, 4, iron_stone)
+    board23.place_stone(2, 0, iron_stone)
 #...................................................................
 
-    board25 = Board(6,2)
+    board24 = Board(5,3)
+    stage_array.append(board24)
+    board24.place_cell(4, 0, 'block')
+    board24.place_cell(4, 4, 'block')
+
+    board24.place_cell(0, 3, 'goal')
+    board24.place_cell(2, 1, 'goal')
+    board24.place_cell(2, 3, 'goal')
+    board24.place_cell(4, 1, 'goal')
+    board24.place_cell(4 ,2, 'goal')
+
+    board24.place_stone(1, 4, positive_stone)
+    board24.place_stone(3, 0, negative_stone)
+    board24.place_stone(0, 1, iron_stone)
+    board24.place_stone(1, 3, iron_stone)
+    board24.place_stone(3, 4, iron_stone)
+#...................................................................
+
+    board25 = Board(5,3)
     stage_array.append(board25)
 
     # Plae block and goal cells
@@ -546,3 +605,59 @@ class Stage:
     # Stage.board25.move_stone(2, 2, 0, 0)
 
     #.................................................
+
+    board26 = Board(5,3)
+    stage_array.append(board26)
+    board26.place_cell(0, 2, 'block')
+    board26.place_cell(1, 2, 'block')
+    board26.place_cell(2, 2, 'block')
+    board26.place_cell(4, 0, 'block')
+    board26.place_cell(4, 1, 'block')
+    board26.place_cell(4, 2, 'block')
+    board26.place_cell(4, 3, 'block')
+    board26.place_cell(4, 4, 'block')
+
+    board26.place_cell(0, 0, 'goal')
+    board26.place_cell(3, 0, 'goal')
+    board26.place_cell(3, 2, 'goal')
+    board26.place_cell(3, 3, 'goal')
+
+    board26.place_stone(1, 0, positive_stone)
+    board26.place_stone(3, 0, negative_stone)
+    board26.place_stone(1, 1, iron_stone)
+    board26.place_stone(2, 3, iron_stone)
+#...................................................................
+    rand_num = random.randint(3, 5)
+    rand_num1 = random.randint(1, 4)
+    xm = random.randint(0, rand_num - 1)
+    ym = random.randint(0, rand_num - 1)
+    magnets = Stone(random.choice('+-'))
+    board27 = Board(rand_num, rand_num1)
+    stage_array.append(board27)
+    board27.place_stone(xm, ym, magnets)
+
+    goal_and_iron=random.randint(1, 4)
+    for c in range(goal_and_iron):
+        x = random.randint(0, rand_num - 1)
+        y = random.randint(0, rand_num - 1)
+        # Ensure x and y are not equal to xm and ym
+        while x == xm and y == ym:
+            x = random.randint(0, rand_num - 1)
+            y = random.randint(0, rand_num - 1)
+
+        board27.place_stone(x, y, iron_stone)
+
+    for c in range(goal_and_iron+1):
+        x=random.randint(0, rand_num-1)
+        y=random.randint(0, rand_num-1)
+        board27.place_cell(x, y, 'goal')
+
+
+
+#....................................................................
+
+    board28= Board(2,1)
+    stage_array.append(board28)
+    board28.place_stone(0, 0, positive_stone)
+    board28.place_cell(1, 1, 'goal')
+    board28.place_cell(0, 1, 'goal')
